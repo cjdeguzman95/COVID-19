@@ -59,11 +59,8 @@ if __name__ == '__main__':
     uk_df = retrieve_country_data("Newcases_Data.csv", "United Kingdom", "Confirmed")
     pre_lockdown = uk_df[0:61]
 
-    uk_series = pd.Series(uk_df)
-    pre_lockdown_series = pd.Series(pre_lockdown)
-
-    avg_rate = round(a_value(uk_series, uk_df, population), 3)
-    pre_lockdown_rate = round(a_value(pre_lockdown_series, pre_lockdown, population), 3)
+    avg_rate = round(a_value(uk_df, population), 3)
+    pre_lockdown_rate = round(a_value(pre_lockdown, population), 3)
 
     graph_axes = graph(title= "How long until there are no more new infections in the UK?", xtitle="Time (days)",
                        ytitle="Number of infections", width=1000, height=650, yscale="linear")
