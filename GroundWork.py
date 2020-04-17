@@ -21,9 +21,9 @@ def retrieve_country_data(file, country, figures):
 
 
 # used for logistic function calculation
-def a_value(series_data, confirmed_data, population):
-    dN = series_data.iloc[-1] - series_data.iloc[0]
-    dt = len(series_data)
+def a_value(confirmed_data, population):
+    dN = confirmed_data.iloc[-1] - confirmed_data.iloc[0]
+    dt = len(confirmed_data)
     N = confirmed_data.iloc[-1]
     N_max = population
     a = (dN/dt)/((1-N/N_max)*N)
