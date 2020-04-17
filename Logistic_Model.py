@@ -26,17 +26,21 @@ def curve_graph(rate_name, infection_rate, confirmed_cases, population, time):
 
 
 if __name__ == '__main__':
+    # N_max
     population = 66650000
+
+    # confirmed_cases
     uk_cumulative = retrieve_country_data("COVID19Data.csv", "United Kingdom", "Confirmed")
     uk_total_infected = uk_cumulative.iloc[-1]
+
+    # finding the infection rate
     uk_df = retrieve_country_data("Newcases_Data.csv", "United Kingdom", "Confirmed")
     pre_lockdown = uk_df[0:61]
-
     avg_rate = round(a_value(uk_df, population), 3)
     pre_lockdown_rate = round(a_value(pre_lockdown, population), 3)
 
     graph_axes = graph(title= "How long until there are no more new infections in the UK?", xtitle="Time (days)",
                        ytitle="Number of infections", width=1000, height=650, yscale="linear")
 
-    curve_graph("Average", avg_rate, 45038, 66650000, 1000)
-    curve_graph("Pre-Lockdown", pre_lockdown_rate, 45038, 66650000, 1000)
+    curve_graph("Average", avg_rate, uk_total_infected, population, 1000)
+    curve_graph("Pre-Lockdown", pre_lockdown_rate, uk_total_infected, population, 1000)
